@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         authModeElement.style.display = 'none';
         document.getElementById('cogitLink').style.display = 'block';
         var repoNoticeElement = document.getElementById('repo_notice');
-        repoNoticeElement.style.display = 'none';
+        repoNoticeElement.style.display = 'block';
       }
     }
   });
@@ -96,9 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (repo) {
       var github_link = document.getElementById('github_link');
       github_link.href = `https://github.com/${repo}`;
-    } else {
       var repoNoticeElement = document.getElementById('repo_notice');
-      repoNoticeElement.style.display = 'block';
+      repoNoticeElement.style.display = 'none';
     }
   });
 });
