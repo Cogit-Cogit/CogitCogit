@@ -70,7 +70,7 @@ async function createHook(event) {
         await createRepo(repoName, token, true);
         alert('Repository가 생성되었습니다.');
       } else alert('repository가 연결되었습니다.');
-      chrome.storage.local.set({ cogit_repo: `${userName}/${repoName}` }, function () {
+      chrome.storage.sync.set({ cogit_repo: `${userName}/${repoName}` }, function () {
         currentRepo();
       });
     });
@@ -78,8 +78,7 @@ async function createHook(event) {
 }
 
 async function currentRepo() {
-  chrome.storage.local.get('cogit_repo').then(async (data) => {
-    console.log(data.cogit_repo);
+  chrome.storage.sync.get('cogit_repo').then(async (data) => {
     if (!data.cogit_repo) {
       document.getElementById('repo').innerHTML =
         '연결된 Repository가 없습니다.';
@@ -93,7 +92,7 @@ async function currentRepo() {
 async function removeHook() {
   event.preventDefault();
   if (!confirm('현재 연결된 레포지토리를 해제하시겠습니까?')) return;
-  chrome.storage.local.remove('cogit_repo', function () {
+  chrome.storage.sync.remove('cogit_repo', function () {
     alert('연결이 해제 되었습니다.');
     currentRepo();
   });

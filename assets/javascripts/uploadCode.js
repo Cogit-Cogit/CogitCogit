@@ -7,9 +7,10 @@ async function uploadCode(
   codeFileExtension,
   algorithmName
 ) {
+  
   chrome.storage.local.get('cogit_token').then((data) => {
     const token = data.cogit_token;
-    chrome.storage.local.get('cogit_repo').then(async (data) => {
+    chrome.storage.sync.get('cogit_repo').then(async (data) => {
       const hook = data.cogit_repo;
 
       if (token === undefined || hook === undefined) {

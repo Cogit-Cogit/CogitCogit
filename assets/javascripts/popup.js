@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.close();
   });
 
-  chrome.storage.local.get('cogit_repo', (result) => { // 만약 연결된 repository가 있으면 그 주소로 반환
+  chrome.storage.sync.get('cogit_repo', (result) => { // 만약 연결된 repository가 있으면 그 주소로 반환
     const repo = result.cogit_repo;
   
     if (repo) {
