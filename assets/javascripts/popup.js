@@ -11,11 +11,11 @@ const SCOPES = [
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
-
   let imageLogo = document.getElementById('imageLogo');
   let text = document.querySelector('#active p');
-  
-  chrome.storage.local.get('active', function (result) { // 활성화 버튼 세팅
+
+  chrome.storage.local.get('active', function (result) {
+    // 활성화 버튼 세팅
     if (result.active) {
       if (result.active == 'active') {
         imageLogo.src = './assets/images/pets.png';
@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const activeBtn = document.getElementById('active');
-  activeBtn.addEventListener('click', function () { // 활성화 버튼을 눌렀을 때
+  activeBtn.addEventListener('click', function () {
+    // 활성화 버튼을 눌렀을 때
     chrome.storage.local.get('active', function (result) {
       if (result.active == 'active') {
         imageLogo.src = './assets/images/pets_grey.png';
@@ -57,8 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < SCOPES.length; i++) {
       url += SCOPES[i] + ' ';
     }
-    console.log('login');
-    chrome.storage.local.set({ 'pipe_cogit': true }, () => {
+    chrome.storage.local.set({ pipe_cogit: true }, () => {
       // opening pipe temporarily
       chrome.tabs.create({ url, selected: true }, function () {
         window.close();
@@ -76,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (authModeElement) {
         authModeElement.style.display = 'none';
         document.getElementById('cogitLink').style.display = 'block';
+        var repoNoticeElement = document.getElementById('repo_notice');
+        repoNoticeElement.style.display = 'none';
       }
     }
   });
@@ -87,16 +89,16 @@ document.addEventListener('DOMContentLoaded', function () {
     window.close();
   });
 
-  chrome.storage.sync.get('cogit_repo', (result) => { // 만약 연결된 repository가 있으면 그 주소로 반환
+  chrome.storage.sync.get('cogit_repo', (result) => {
+    // 만약 연결된 repository가 있으면 그 주소로 반환
     const repo = result.cogit_repo;
-  
+
     if (repo) {
       var github_link = document.getElementById('github_link');
       github_link.href = `https://github.com/${repo}`;
-
-      var repo_notice = document.getElementById('repo_notice');
-      repo_notice.style.display = 'none';
+    } else {
+      var repoNoticeElement = document.getElementById('repo_notice');
+      repoNoticeElement.style.display = 'block';
     }
   });
-
 });
