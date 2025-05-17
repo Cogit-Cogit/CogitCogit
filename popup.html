@@ -7,10 +7,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
       rel="stylesheet"
     />
+    <!-- https://semantic-ui.com/elements/icon.html -->
   </head>
   <body>
     <div class="ui grid container">
       <div class="sixteen wide center aligned column">
+
         <h1 id="title">
           <span style="color: #619fff">COGIT</span>
           <span style="color: #c3d9fb">COGIT</span>
@@ -31,20 +33,40 @@
             COGITCOGIT
           </p>
           <button id="authenticate" class="ui secondary button">
-            <i class="icon github"></i>
+            <i class="icon github alternate"></i>
             Authenticate
           </button>
         </div>
 
         <div id="cogitLink" style="display: none">
           <button id="logout" class="ui secondary button">
-            <i class="icon github"></i>
-            LOGOUT
+            <i class="icon github alternate"></i>
+            LOGOUT 
           </button>
         </div>
-        <a title="Cogit Home" id="welcome_URL" href="welcome.html" target="_blank">
-          <i id="home" class="ui grey home icon"></i>
-        </a>
+
+        <div id="repo_notice">
+          <p id="content">
+            To upload your code to GitHub,<br />
+            you need to connect your GitHub repository first.<br/>
+            (click the 
+            <i id="repo_link" class="ui grey sync icon"></i>
+            icon)
+          </p>
+        </div>
+        
+        <div id="connect_link">
+          <a title="Repository Connect" id="welcome_URL" href="welcome.html" target="_blank">
+            <i id="repo_link" class="ui grey sync icon"></i>
+          </a>
+          <a title="Chrome Web Store" id="welcome_URL" href="https://chromewebstore.google.com/detail/%EC%BD%94%EA%B9%83%EC%BD%94%EA%B9%83-cogitcogit/cmjbobieohgjhfflhokcdfnhinmphojk" target="_blank">
+            <i id="chrome_link" class="ui grey chrome icon"></i>
+          </a>
+          <a title="My GitHub Repository" id="welcome_URL" href="https://github.com/" target="_blank">
+            <i id="github_link" class="ui grey github icon"></i>
+          </a>
+        </div>
+
       </div>
     </div>
     <script src="assets/javascripts/popup.js"></script>

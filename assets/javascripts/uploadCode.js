@@ -14,7 +14,7 @@ async function uploadCode(
 
       if (token === undefined || hook === undefined) {
         console.log('업로드 할 수 없습니다.');
-        await createModal(true, 0, 0);
+        // await createModal(0, 0);
         return;
       }
 
@@ -31,11 +31,16 @@ async function uploadCode(
         treeSha,
         refSHA
       );
+      
       await git.updateHead(ref, commitSha);
-      let baekjoonCnt = await git.getFileList('BAEKJOON');
-      let programmersCnt = await git.getFileList('PROGRAMMERS');
-      // console.log('백준: ', baekjoonCnt, ' 프로그래머스: ', programmersCnt);
-      await createModal(true, baekjoonCnt, programmersCnt);
+      
+      const [baekjoonCnt, programmersCnt] = await Promise.all([
+        git.getFileList('BAEKJOON'),
+        git.getFileList('PROGRAMMERS'),
+      ]);
+
+      await createModal(baekjoonCnt, programmersCnt);
+
     });
   });
 }

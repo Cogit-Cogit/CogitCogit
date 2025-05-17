@@ -32,7 +32,6 @@ async function saveCode(isActive) {
     if (codeResult && !codeResult.includes('로딩중')) {
       clearInterval(intervalId);
 
-      funcButtons.remove();
       let cogitImg = document.createElement('img');
 
       if (codeResult.includes('정답')) {

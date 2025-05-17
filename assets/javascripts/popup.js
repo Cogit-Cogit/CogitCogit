@@ -11,40 +11,41 @@ const SCOPES = [
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
+
   let imageLogo = document.getElementById('imageLogo');
   let text = document.querySelector('#active p');
-  chrome.storage.local.get('active', function (result) {
+  
+  chrome.storage.local.get('active', function (result) { // 활성화 버튼 세팅
     if (result.active) {
       if (result.active == 'active') {
         imageLogo.src = './assets/images/pets.png';
-        text.textContent = 'activation';
+        text.textContent = 'activated';
         text.style.color = '#F79F5F';
       } else {
         imageLogo.src = './assets/images/pets_grey.png';
-        text.textContent = 'deactivation';
+        text.textContent = 'inactive';
         text.style.color = '#D9D9D9';
       }
     } else {
       chrome.storage.local.set({ active: 'active' }).then(() => {
         imageLogo.src = './assets/images/pets.png';
-        text.textContent = 'activation';
+        text.textContent = 'activated';
         text.style.color = '#F79F5F';
       });
     }
   });
 
   const activeBtn = document.getElementById('active');
-
-  activeBtn.addEventListener('click', function () {
+  activeBtn.addEventListener('click', function () { // 활성화 버튼을 눌렀을 때
     chrome.storage.local.get('active', function (result) {
       if (result.active == 'active') {
         imageLogo.src = './assets/images/pets_grey.png';
-        text.textContent = 'deactivation';
+        text.textContent = 'inactive';
         text.style.color = '#D9D9D9';
         chrome.storage.local.set({ active: 'deactive' });
       } else {
         imageLogo.src = './assets/images/pets.png';
-        text.textContent = 'activation';
+        text.textContent = 'activated';
         text.style.color = '#F79F5F';
         chrome.storage.local.set({ active: 'active' });
       }
@@ -69,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
   loginButton.addEventListener('click', login);
 
   chrome.storage.local.get('cogit_id', function (data) {
-    console.log(data.cogit_id);
     if (data.cogit_id) {
       // cogit 인증 데이터가 존재하면, 로그인 버튼 숨김
       var authModeElement = document.getElementById('auth_mode');
@@ -86,4 +86,17 @@ document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.remove('cogit_id');
     window.close();
   });
+
+  chrome.storage.local.get('cogit_repo', (result) => { // 만약 연결된 repository가 있으면 그 주소로 반환
+    const repo = result.cogit_repo;
+  
+    if (repo) {
+      var github_link = document.getElementById('github_link');
+      github_link.href = `https://github.com/${repo}`;
+
+      var repo_notice = document.getElementById('repo_notice');
+      repo_notice.style.display = 'none';
+    }
+  });
+
 });

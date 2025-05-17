@@ -30,7 +30,7 @@ function countDay() { //연속 풀이 날
 }
 
 
-async function createModal(isCorrect, baekjoonCnt, programmersCnt) {
+async function createModal(baekjoonCnt, programmersCnt) {
   let days = await countDay();
   
   // 모달 창을 생성할 요소들을 만듭니다.
