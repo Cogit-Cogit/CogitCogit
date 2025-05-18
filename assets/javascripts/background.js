@@ -1,4 +1,10 @@
-// 로그인 테스트를 위해 cogit 데이터 삭제
-// chrome.storage.local.remove('cogit_token');
-// chrome.storage.local.remove('cogit_id');
 chrome.storage.local.set({ active: 'active' });
+
+chrome.storage.local.get('cogit_repo').then((data) => {
+  const repo = data.cogit_repo;
+  if (repo) {
+    chrome.storage.sync.set({ cogit_repo: repo }, () => {
+      chrome.storage.local.remove('cogit_repo');
+    });
+  }
+});
