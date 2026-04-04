@@ -23,9 +23,7 @@ async function saveCode(isActive) {
       codeResult = modalTitle.textContent;
     }
     var codeRunningTime = 0;
-    var algorithmQuestId = document
-      .querySelector('div.main > div.lesson-content')
-      .getAttribute('data-lesson-id');
+    var algorithmQuestId = document.querySelector('.lesson-content').getAttribute('data-lesson-id');
 
     var algorithmName = document.querySelector('.challenge-title').textContent;
 
