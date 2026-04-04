@@ -1,7 +1,7 @@
 {
   "name": "코깃코깃 (CogitCogit)",
   "description": "백준(Baekjoon), 프로그래머스(Programmers) 코드 GitHub 자동 업로드",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "manifest_version": 3,
   "background": {
     "service_worker": "/assets/javascripts/background.js"
